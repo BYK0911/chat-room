@@ -48,7 +48,10 @@ export default {
 
       login(username, password).then(data => {
         if (data.success) {
-          this.setUser(data.data)
+          const user = { groups: [], ...data.data }
+
+          this.$socket.emit('login', user)
+          this.setUser(user)
           this.$router.push('/')
         }
       })

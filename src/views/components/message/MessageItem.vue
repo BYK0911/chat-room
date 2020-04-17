@@ -1,6 +1,6 @@
 <template>
-  <div class="msg" :class='msg.isSend ? "msg-out" : "msg-in"'>
-    <div class="msg-avator"> {{ msg.isSend ? "我" : 'Ta' }} </div>
+  <div class="msg" :class='msg.sender === user.id ? "msg-out" : "msg-in"'>
+    <div class="msg-avator"> {{ msg.sender === user.id ? "我" : 'Ta' }} </div>
     <div class="msg-content">
       <pre v-if='msg.type === "0"'>{{ msg.content }}</pre>
       <img class='msg-img' v-if='msg.type==="img"' :src="msg.content" alt="">
@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   props: {
     msg: {
@@ -16,11 +18,14 @@ export default {
       default () {
         return {
           content: '',
-          type: 'text',
-          isSend: true
+          type: 'text'
         }
       }
     }
+  },
+
+  computed: {
+    ...mapState(['user'])
   },
 
   methods: {
@@ -32,6 +37,12 @@ export default {
 </script>
 
 <style scoped lang='scss'>
+.msg-list{
+  padding: 10px;
+  overflow: auto;
+  border-bottom: 1px solid #ddd;
+}
+
 .msg {
   position: relative;
   width: 100%;
