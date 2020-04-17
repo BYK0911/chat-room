@@ -10,15 +10,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import MenuBar from '@/components/menuBar/index.vue'
 
 export default {
-  components: { MenuBar },
-
-  computed: {
-    ...mapState(['contact'])
-  }
+  components: { MenuBar }
 }
 </script>
 

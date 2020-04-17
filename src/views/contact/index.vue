@@ -1,22 +1,33 @@
 <template>
-  <div class='wrapper'>
+  <div class='wrapper flex'>
     <!-- 联系人 -->
-    <contact class='flex-aside contacts'></contact>
+    <contact class='flex-aside contacts' @checkUser='checkUser'></contact>
 
     <div class="flex-main">
+      <profile v-if='contact' :contact='contact' :isNew='isNew'></profile>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import Contact from './components/contact/index.vue'
+import Profile from './components/profile/index.vue'
 
 export default {
-  components: { Contact },
+  components: { Contact, Profile },
 
-  computed: {
-    ...mapState(['contact'])
+  data () {
+    return {
+      contact: null,
+      isNew: false
+    }
+  },
+
+  methods: {
+    checkUser (contact, isNew) {
+      this.contact = contact
+      this.isNew = isNew
+    }
   }
 }
 </script>

@@ -6,21 +6,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: null,
-    contact: null,
-    contacts: []
+    user: null
   },
   mutations: {
     setUser (state, user) {
       state.user = user
-    },
-
-    setContact (state, contact) {
-      state.contact = contact || null
-    },
-
-    setContacts (state, contacts) {
-      state.contacts = contacts
     }
   },
   actions: {

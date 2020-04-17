@@ -1,7 +1,7 @@
 <template>
   <div class="msg-list flex-main">
-    <template v-if='contact'>
-      <message-item :msg='m' v-for='(m, i) in contact.msgs' :key='i'></message-item>
+    <template v-if='user.contact'>
+      <message-item :msg='m' v-for='(m, i) in user.contact.msgs' :key='i'></message-item>
     </template>
   </div>
 </template>
@@ -14,12 +14,12 @@ export default {
   components: { MessageItem },
 
   computed: {
-    ...mapState(['contact'])
+    ...mapState(['user'])
   },
 
   sockets: {
     msg (data) {
-      if (data.sender === this.contact) {
+      if (data.sender === this.user.contact.id) {
         this.toBottom()
       }
     }
@@ -34,7 +34,7 @@ export default {
   },
 
   watch: {
-    'contact.msgs' () {
+    'user.contact.msgs' () {
       this.toBottom()
     }
   }

@@ -5,7 +5,7 @@
 
     <div class="flex-v flex-main msg-wrapper">
       <!-- 聊天对象 -->
-      <div class="msg-title flex-header"> {{ contact ? contact.username : '' }} </div>
+      <div class="msg-title flex-header"> {{ user.contact ? user.contact.username : '' }} </div>
 
       <!-- 聊天内容 -->
       <message class='flex-main'></message>
@@ -26,7 +26,7 @@ export default {
   components: { ChatList, Message, Inputer },
 
   computed: {
-    ...mapState(['contact'])
+    ...mapState(['user'])
   }
 }
 </script>

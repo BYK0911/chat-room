@@ -1,6 +1,6 @@
 <template>
   <div class="flex-footer inputer">
-    <textarea v-model='content' :disabled='!this.contact' @keyup.enter='send'></textarea>
+    <textarea v-model='content' :disabled='!this.user.contact' @keyup.enter='send'></textarea>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import { mapState } from 'vuex'
 
 export default {
   computed: {
-    ...mapState(['user', 'contact'])
+    ...mapState(['user'])
   },
 
   data () {
@@ -28,9 +28,9 @@ export default {
           type: '0',
           content: content,
           sender: this.user.id,
-          receiver: this.contact.id
+          receiver: this.user.contact.id
         }
-        this.contact.msgs.push(msg)
+        this.user.contact.msgs.push(msg)
         this.$socket.emit('msg', msg)
 
         this.content = ''

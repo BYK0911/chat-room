@@ -71,6 +71,12 @@ export default {
         }
       })
     }
+  },
+
+  watch: {
+    '$route.name' (v) {
+      this.curr = v
+    }
   }
 }
 </script>

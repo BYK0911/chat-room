@@ -20,6 +20,7 @@
 <script>
 import { mapMutations } from 'vuex'
 import { login } from '@/api/session'
+import { queryUserInfo } from '@/api/user'
 
 export default {
   data () {
@@ -33,6 +34,16 @@ export default {
 
   methods: {
     ...mapMutations(['setUser']),
+    // 查询用户信息（用户信息、用户联系人、用户群组、用户聊天列表）
+    queryUserInfo () {
+      queryUserInfo().then(data => {
+        if (data.success) {
+          this.setUser(data.data)
+          this.$router.push('/')
+        }
+      })
+    },
+
     login () {
       const username = this.form.username.trim()
       const password = this.form.password.trim()
@@ -48,11 +59,7 @@ export default {
 
       login(username, password).then(data => {
         if (data.success) {
-          const user = { groups: [], ...data.data }
-
-          this.$socket.emit('login', user)
-          this.setUser(user)
-          this.$router.push('/')
+          this.queryUserInfo()
         }
       })
     }
