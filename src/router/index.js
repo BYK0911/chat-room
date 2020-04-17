@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Chat from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import SignUp from '../views/SignUp.vue'
+
+import Login from '@/views/Login.vue'
+import SignUp from '@/views/SignUp.vue'
+import Home from '@/views/Home.vue'
+import Chat from '@/views/chat'
+import Contact from '@/views/contact'
+import Group from '@/views/group'
 
 Vue.use(VueRouter)
 
@@ -10,7 +14,25 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Chat
+    component: Home,
+    redirect: '/chat',
+    children: [
+      {
+        path: '/chat',
+        name: 'Chat',
+        component: Chat
+      },
+      {
+        path: '/contact',
+        name: 'Contact',
+        component: Contact
+      },
+      {
+        path: '/group',
+        name: 'Group',
+        component: Group
+      }
+    ]
   },
   {
     path: '/login',
