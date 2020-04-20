@@ -9,15 +9,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import Contact from './components/contact/index.vue'
 
 export default {
-  components: { Contact },
-
-  computed: {
-    ...mapState(['contact'])
-  }
+  components: { Contact }
 }
 </script>
 

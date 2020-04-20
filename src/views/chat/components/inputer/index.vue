@@ -1,6 +1,6 @@
 <template>
   <div class="flex-footer inputer">
-    <textarea v-model='content' :disabled='!this.user.contact' @keyup.enter='send'></textarea>
+    <textarea v-model='content' :disabled='!user.contact' @keyup.enter='send'></textarea>
   </div>
 </template>
 

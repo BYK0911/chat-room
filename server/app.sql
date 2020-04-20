@@ -13,18 +13,24 @@ CREATE TABLE contact (
   id INT PRIMARY KEY AUTO_INCREMENT,
   user_id INT NOT NULL,
   contact_id INT NOT NULL,
+  type ENUM('0', '1') DEFAULT '0', -- ‘0’：联系人，‘1’：群组
+  remarks VARCHAR(32),
+  msg_unread INT DEFAULT 0,
+  status ENUM('0', '1') DEFAULT '0', -- '0'：未加入聊天列表，‘1’：已加入聊天列表
   time_create TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE group (
+CREATE TABLE chat_group (
   id INT PRIMARY KEY AUTO_INCREMENT,
   user_id INT NOT NULL,
+  group_name VARCHAR(32) NOT NULL,
   time_create TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE group_user (
   id INT PRIMARY KEY AUTO_INCREMENT,
   user_id INT NOT NULL,
+  group_id INT NOT NULL,
   time_create TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -34,6 +40,5 @@ CREATE TABLE msg (
   content VARCHAR(256) NOT NULL,
   receiver INT NOT NULL,
   sender INT NOT NULL,
-  status ENUM('0', '1'), -- '0': 未读，‘1’：已读
   time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

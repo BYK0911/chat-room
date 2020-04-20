@@ -20,7 +20,7 @@ import { mapState } from 'vuex'
 
 export default {
   computed: {
-    ...mapState('user')
+    ...mapState(['user'])
   },
   methods: {
     // 查看分组

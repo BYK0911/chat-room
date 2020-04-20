@@ -6,11 +6,11 @@
   <ul class="flex-main contact-list">
     <li
       class='contact-item'
-      v-for='u in user.contacts'
-      :key='u.id'
+      v-for='u in user.chatList'
+      :key='u.contact_id'
       @click='toggleContact(u)'>
       <span class='bandge' v-if='u.unread && u !== user.contact'></span>
-      <span>{{ u.username }}</span>
+      <span>{{ u.remarks }}</span>
     </li>
   </ul>
 </div>
@@ -27,10 +27,10 @@ export default {
   sockets: {
     msg (data) {
       this.user.contacts.forEach(u => {
-        if (u.id === data.sender || u.id === data.receiver) {
+        if (u.contact_id === data.sender || u.contact_id === data.receiver) {
           u.msgs.push(data)
 
-          if (u.id === data.sender && u.id !== this.user.contact.id) {
+          if (u.contact_id === data.sender && u.contact_id !== this.user.contact.contact_id) {
             u.unread = true
           }
         }

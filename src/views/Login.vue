@@ -39,7 +39,7 @@ export default {
       queryUserInfo().then(data => {
         if (data.success) {
           this.setUser(data.data)
-          this.$router.push('/')
+          this.$router.push({ name: 'Home' })
         }
       })
     },

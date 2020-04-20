@@ -1,9 +1,10 @@
 import http from './http'
 
-export function queryUsers () {
+export function queryUsers (username) {
   return http({
     method: 'get',
-    url: '/api/user/list'
+    url: '/api/user/list',
+    params: { username }
   })
 }
 
@@ -30,11 +31,11 @@ export function removeChat (id) {
   })
 }
 
-export function addContact (id) {
+export function addContact (id, remarks) {
   return http({
     method: 'post',
     url: '/api/contact/add',
-    data: { id }
+    data: { id, remarks }
   })
 }
 

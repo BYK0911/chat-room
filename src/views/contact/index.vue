@@ -1,10 +1,10 @@
 <template>
   <div class='wrapper flex'>
     <!-- 联系人 -->
-    <contact class='flex-aside contacts' @checkUser='checkUser'></contact>
+    <contact ref='contacts' class='flex-aside contacts' @checkUser='checkUser'></contact>
 
     <div class="flex-main">
-      <profile v-if='contact' :contact='contact' :isNew='isNew'></profile>
+      <profile v-if='contact' :contact='contact' :isNew='isNew' @addSucc='refresh'></profile>
     </div>
   </div>
 </template>
@@ -27,6 +27,11 @@ export default {
     checkUser (contact, isNew) {
       this.contact = contact
       this.isNew = isNew
+    },
+
+    refresh () {
+      this.isNew = false
+      this.$refs.contacts.refresh()
     }
   }
 }
